@@ -7,14 +7,17 @@ import {
   Wrapper,
 } from './UsersListItem.styles';
 
-const UsersListItem = ({ userData: { average, name, attendance = '0%' } }) => (
+const UsersListItem = ({
+  deleteUser,
+  userData: { average, name, attendance = '0%' },
+}) => (
   <Wrapper>
     <StyledAverage value={average} />
     <StyledInformation>
       <p>{name}</p>
       <p>attendance: {attendance}</p>
     </StyledInformation>
-    <Button />
+    <Button onClick={() => deleteUser(name)} />
   </Wrapper>
 );
 
