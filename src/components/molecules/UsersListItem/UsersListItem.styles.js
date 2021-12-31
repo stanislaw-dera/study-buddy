@@ -38,7 +38,7 @@ export const StyledAverage = styled.div`
 `;
 
 export const StyledInformation = styled.div`
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.darkGrey};
   font-size: ${({ theme }) => theme.fontSize.m};
   padding: 25px 20px;
 
