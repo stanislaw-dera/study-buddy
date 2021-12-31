@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import { users as usersData } from 'data/users';
+import React from 'react';
+import PropTypes from 'prop-types';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
-import { StyledTitle, Wrapper } from './UsersList.styles';
+import { Title } from 'components/atoms/Title/Title';
+import { UserShape } from 'types';
 
 const UsersList = ({ deleteUser, users }) => {
   return (
-    <Wrapper>
-      <StyledTitle>Users List</StyledTitle>
+    <>
+      <Title>Users List</Title>
       {users.map((userData) => (
         <UsersListItem
           deleteUser={deleteUser}
@@ -14,8 +15,13 @@ const UsersList = ({ deleteUser, users }) => {
           userData={userData}
         />
       ))}
-    </Wrapper>
+    </>
   );
+};
+
+UsersList.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.shape(UserShape)),
+  deleteUser: PropTypes.func,
 };
 
 export default UsersList;

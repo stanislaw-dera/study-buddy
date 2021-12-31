@@ -1,11 +1,12 @@
 import { GlobalStyle } from 'assets/styles/globalStyle';
-import UsersList from 'components/organisms/UsersList/UsersList';
 import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { theme } from 'assets/styles/theme';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { users as usersData } from 'data/users';
-import Form from 'components/organisms/Form/Form';
+import MainTemplate from 'components/templates/MainTemplate';
+import Dashboard from './Dashboard';
+import AddUser from './AddUser';
 
 const Wrapper = styled.div`
   background-color: #f7f8fa;
@@ -13,7 +14,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 `;
 
 const initialFormState = {
@@ -57,31 +58,28 @@ const Root = () => {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
 
-        <Wrapper>
-          <nav>
-            <Link to="/add-user">Add user</Link>
-            <Link to="/">Users list</Link>
-          </nav>
-
-          <Routes>
-            <Route
-              path="/"
-              exact
-              element={<UsersList deleteUser={deleteUser} users={users} />}
-            ></Route>
-            <Route
-              path="/add-user"
-              exact
-              element={
-                <Form
-                  formValues={formValues}
-                  handleAddUser={handleAddUser}
-                  handleInputChange={handleInputChange}
-                />
-              }
-            ></Route>
-          </Routes>
-        </Wrapper>
+        <MainTemplate>
+          <Wrapper>
+            <Routes>
+              <Route
+                path="/"
+                exact
+                element={<Dashboard users={users} deleteUser={deleteUser} />}
+              ></Route>
+              <Route
+                path="/add-user"
+                exact
+                element={
+                  <AddUser
+                    handleAddUser={handleAddUser}
+                    formValues={formValues}
+                    handleInputChange={handleInputChange}
+                  />
+                }
+              ></Route>
+            </Routes>
+          </Wrapper>
+        </MainTemplate>
       </ThemeProvider>
     </Router>
   );
