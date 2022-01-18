@@ -4,16 +4,12 @@ import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
 import { Title } from 'components/atoms/Title/Title';
 import { UserShape } from 'types';
 
-const UsersList = ({ deleteUser, users }) => {
+const UsersList = ({ users }) => {
   return (
     <>
       <Title>Users List</Title>
       {users.map((userData) => (
-        <UsersListItem
-          deleteUser={deleteUser}
-          key={userData.name}
-          userData={userData}
-        />
+        <UsersListItem key={userData.name} userData={userData} />
       ))}
     </>
   );
@@ -21,7 +17,6 @@ const UsersList = ({ deleteUser, users }) => {
 
 UsersList.propTypes = {
   users: PropTypes.arrayOf(PropTypes.shape(UserShape)),
-  deleteUser: PropTypes.func,
 };
 
 export default UsersList;
